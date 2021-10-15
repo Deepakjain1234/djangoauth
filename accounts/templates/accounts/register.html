@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+    <style>
+        .cont
+        {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="cont">
+        <h1>this is cont</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="usernamae">username</label><br>
+            {{form.username}} <br>
+            <label for="email">email</label> <br>
+            {{form.email}} <br>
+            <label for="password1">Password</label><br>
+            {{form.password1}} <br>
+            <label for="password2">Conform Password </label> <br>
+            {{form.password2}} <br> <br>
+            {% if form.errors %}
+            {% for field in form%}
+               {% for error in field.errors %}
+                  {{ error|escape }}
+               {% endfor %}
+            {% endfor %}   
+            {% for error in form.non_field_error%} 
+                {{ error|escape }} 
+            {% endfor %}    
+            {% endif%}
+
+
+            <input type="submit" value="Register">
+
+            
+        </form>
+    </div>
+</body>
+</html>
